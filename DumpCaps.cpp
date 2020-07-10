@@ -127,6 +127,70 @@ void PrintPage_OPTIONS7(ID3D12Device* device)
     std::cout << "\n";
 }
 
+void PrintPage_ARCHITECTURE(ID3D12Device* device)
+{
+    UINT nodeCount = device->GetNodeCount();
+    bool outputHeader = true;
+    for (UINT i = 0; i < nodeCount; ++i)
+    {
+        D3D12_FEATURE_DATA_ARCHITECTURE cap{};
+        cap.NodeIndex = i;
+        if (SUCCEEDED(device->CheckFeatureSupport(D3D12_FEATURE_ARCHITECTURE, &cap, sizeof(cap))))
+        {
+            if (outputHeader)
+            {
+                std::cout << "ARCHITECTURE: \n";
+                outputHeader = false;
+            }
+            std::cout << "\t" << "Node " << cap.NodeIndex << ": \n";
+            std::cout << "\t\t" << "TileBasedRenderer: " << ToString(cap.TileBasedRenderer) << "\n";
+            std::cout << "\t\t" << "UMA: " << ToString(cap.UMA) << "\n";
+            std::cout << "\t\t" << "CacheCoherentUMA: " << ToString(cap.CacheCoherentUMA) << "\n";
+            std::cout << "\n";
+        }
+        else
+        {
+            break;
+        }
+    }
+}
+
+void PrintPage_FEATURE_LEVELS(ID3D12Device* device)
+{
+    D3D_FEATURE_LEVEL featureLevels[] = {
+        D3D_FEATURE_LEVEL_1_0_CORE,
+        D3D_FEATURE_LEVEL_9_1,
+        D3D_FEATURE_LEVEL_9_2,
+        D3D_FEATURE_LEVEL_9_3,
+        D3D_FEATURE_LEVEL_10_0,
+        D3D_FEATURE_LEVEL_10_1,
+        D3D_FEATURE_LEVEL_11_0,
+        D3D_FEATURE_LEVEL_11_1,
+        D3D_FEATURE_LEVEL_12_0,
+        D3D_FEATURE_LEVEL_12_1
+    };
+
+    bool outputHeader = true;
+    for (int i = 0; i < _countof(featureLevels); ++i)
+    {
+        D3D12_FEATURE_DATA_FEATURE_LEVELS cap{};
+        cap.NumFeatureLevels = 1;
+        D3D_FEATURE_LEVEL requested = featureLevels[i];
+        cap.pFeatureLevelsRequested = &requested;
+        if (SUCCEEDED(device->CheckFeatureSupport(D3D12_FEATURE_FEATURE_LEVELS, &cap, sizeof(cap))) && cap.MaxSupportedFeatureLevel == requested)
+        {
+            if (outputHeader)
+            {
+                std::cout << "FEATURE_LEVELS: \n\t";
+                outputHeader = false;
+            }
+            std::cout << ToString(requested) << " ";
+        }
+
+    }
+    std::cout << "\n\n";
+}
+
 int main(int argc, void** argv)
 {
     if (argc > 2)
@@ -204,6 +268,10 @@ int main(int argc, void** argv)
     PrintPage_OPTIONS6(device.Get());
 
     PrintPage_OPTIONS7(device.Get());
+
+    PrintPage_FEATURE_LEVELS(device.Get());
+
+    PrintPage_ARCHITECTURE(device.Get());
 
     return 0;
 }

@@ -229,3 +229,21 @@ std::string ToString(D3D12_SAMPLER_FEEDBACK_TIER tier)
 	default: return "<Unknown>";
 	}
 }
+
+std::string ToString(D3D_FEATURE_LEVEL fl)
+{
+	switch (fl)
+	{
+	case D3D_FEATURE_LEVEL_1_0_CORE: return "1.0-Core";
+	case D3D_FEATURE_LEVEL_9_1: return "9.1";
+	case D3D_FEATURE_LEVEL_9_2: return "9.2";
+	case D3D_FEATURE_LEVEL_9_3: return "9.3";
+	case D3D_FEATURE_LEVEL_10_0: return "10.0";
+	case D3D_FEATURE_LEVEL_10_1: return "10.1";
+	case D3D_FEATURE_LEVEL_11_0: return "11.0";
+	case D3D_FEATURE_LEVEL_11_1: return "11.1";
+	case D3D_FEATURE_LEVEL_12_0: return "12.0";
+	case D3D_FEATURE_LEVEL_12_1: return "12.1";
+	default: return "<Unknown>";
+	}
+}
