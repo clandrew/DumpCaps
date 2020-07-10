@@ -1,8 +1,15 @@
 #pragma once
 
-std::string ToString(BOOL b)
+std::string ToStringBool(BOOL b)
 {
 	return b ? "TRUE" : "FALSE";
+}
+
+std::string ToStringUint(UINT u)
+{
+	std::ostringstream s;
+	s << u;
+	return s.str();
 }
 
 std::string ToString(D3D12_SHADER_MIN_PRECISION_SUPPORT minPrec)
@@ -10,7 +17,6 @@ std::string ToString(D3D12_SHADER_MIN_PRECISION_SUPPORT minPrec)
 	if (minPrec == D3D12_SHADER_MIN_PRECISION_SUPPORT_NONE) return "None";
 
 	std::string result;
-	bool first = true;
 	if (minPrec & D3D12_SHADER_MIN_PRECISION_SUPPORT_10_BIT)
 	{
 		result.append("10-bit");

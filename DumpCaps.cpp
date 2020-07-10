@@ -13,20 +13,20 @@ void PrintPage_OPTIONS(ID3D12Device* device)
         return;
 
     std::cout << "D3D12_OPTIONS: \n";
-    std::cout << "\t" << "DoublePrecisionFloatShaderOps: " << ToString(cap.DoublePrecisionFloatShaderOps) << "\n";
-    std::cout << "\t" << "OutputMergerLogicOp: " << ToString(cap.OutputMergerLogicOp) << "\n";
+    std::cout << "\t" << "DoublePrecisionFloatShaderOps: " << ToStringBool(cap.DoublePrecisionFloatShaderOps) << "\n";
+    std::cout << "\t" << "OutputMergerLogicOp: " << ToStringBool(cap.OutputMergerLogicOp) << "\n";
     std::cout << "\t" << "MinPrecisionSupport: " << ToString(cap.MinPrecisionSupport) << "\n";
     std::cout << "\t" << "TiledResourcesTier: " << ToString(cap.TiledResourcesTier) << "\n";
     std::cout << "\t" << "ResourceBindingTier: " << ToString(cap.ResourceBindingTier) << "\n";
-    std::cout << "\t" << "PSSpecifiedStencilRefSupported: " << ToString(cap.PSSpecifiedStencilRefSupported) << "\n";
-    std::cout << "\t" << "TypedUAVLoadAdditionalFormats: " << ToString(cap.TypedUAVLoadAdditionalFormats) << "\n";
-    std::cout << "\t" << "ROVsSupported: " << ToString(cap.ROVsSupported) << "\n";
+    std::cout << "\t" << "PSSpecifiedStencilRefSupported: " << ToStringBool(cap.PSSpecifiedStencilRefSupported) << "\n";
+    std::cout << "\t" << "TypedUAVLoadAdditionalFormats: " << ToStringBool(cap.TypedUAVLoadAdditionalFormats) << "\n";
+    std::cout << "\t" << "ROVsSupported: " << ToStringBool(cap.ROVsSupported) << "\n";
     std::cout << "\t" << "ConservativeRasterizationTier: " << ToString(cap.ConservativeRasterizationTier) << "\n";
     std::cout << "\t" << "MaxGPUVirtualAddressBitsPerResource: " << cap.MaxGPUVirtualAddressBitsPerResource << "\n";
-    std::cout << "\t" << "StandardSwizzle64KBSupported: " << ToString(cap.StandardSwizzle64KBSupported) << "\n";
+    std::cout << "\t" << "StandardSwizzle64KBSupported: " << ToStringBool(cap.StandardSwizzle64KBSupported) << "\n";
     std::cout << "\t" << "CrossNodeSharingTier: " << ToString(cap.CrossNodeSharingTier) << "\n";
-    std::cout << "\t" << "CrossAdapterRowMajorTextureSupported: " << ToString(cap.CrossAdapterRowMajorTextureSupported) << "\n";
-    std::cout << "\t" << "VPAndRTArrayIndexFromAnyShaderFeedingRasterizerSupportedWithoutGSEmulation: " << ToString(cap.VPAndRTArrayIndexFromAnyShaderFeedingRasterizerSupportedWithoutGSEmulation) << "\n";
+    std::cout << "\t" << "CrossAdapterRowMajorTextureSupported: " << ToStringBool(cap.CrossAdapterRowMajorTextureSupported) << "\n";
+    std::cout << "\t" << "VPAndRTArrayIndexFromAnyShaderFeedingRasterizerSupportedWithoutGSEmulation: " << ToStringBool(cap.VPAndRTArrayIndexFromAnyShaderFeedingRasterizerSupportedWithoutGSEmulation) << "\n";
     std::cout << "\t" << "ResourceHeapTier: " << ToString(cap.ResourceHeapTier) << "\n";
     std::cout << "\n";
 }
@@ -38,12 +38,12 @@ void PrintPage_OPTIONS1(ID3D12Device* device)
         return;
 
     std::cout << "D3D12_OPTIONS1: \n";
-    std::cout << "\t" << "WaveOps: " << ToString(cap.WaveOps) << "\n";
-    std::cout << "\t" << "WaveLaneCountMin: " << ToString(cap.WaveLaneCountMin) << "\n";
-    std::cout << "\t" << "WaveLaneCountMax: " << ToString(cap.WaveLaneCountMax) << "\n";
-    std::cout << "\t" << "TotalLaneCount: " << ToString(cap.TotalLaneCount) << "\n";
-    std::cout << "\t" << "ExpandedComputeResourceStates: " << ToString(cap.ExpandedComputeResourceStates) << "\n";
-    std::cout << "\t" << "Int64ShaderOps: " << ToString(cap.Int64ShaderOps) << "\n";
+    std::cout << "\t" << "WaveOps: " << ToStringBool(cap.WaveOps) << "\n";
+    std::cout << "\t" << "WaveLaneCountMin: " << ToStringUint(cap.WaveLaneCountMin) << "\n";
+    std::cout << "\t" << "WaveLaneCountMax: " << ToStringUint(cap.WaveLaneCountMax) << "\n";
+    std::cout << "\t" << "TotalLaneCount: " << ToStringUint(cap.TotalLaneCount) << "\n";
+    std::cout << "\t" << "ExpandedComputeResourceStates: " << ToStringBool(cap.ExpandedComputeResourceStates) << "\n";
+    std::cout << "\t" << "Int64ShaderOps: " << ToStringBool(cap.Int64ShaderOps) << "\n";
     std::cout << "\n";
 }
 
@@ -54,7 +54,7 @@ void PrintPage_OPTIONS2(ID3D12Device* device)
         return;
 
     std::cout << "D3D12_OPTIONS2: \n";
-    std::cout << "\t" << "DepthBoundsTestSupported: " << ToString(cap.DepthBoundsTestSupported) << "\n";
+    std::cout << "\t" << "DepthBoundsTestSupported: " << ToStringBool(cap.DepthBoundsTestSupported) << "\n";
     std::cout << "\t" << "ProgrammableSamplePositionsTier: " << ToString(cap.ProgrammableSamplePositionsTier) << "\n";
     std::cout << "\n";
 }
@@ -66,11 +66,11 @@ void PrintPage_OPTIONS3(ID3D12Device* device)
         return;
 
     std::cout << "D3D12_OPTIONS3: \n";
-    std::cout << "\t" << "CopyQueueTimestampQueriesSupported: " << ToString(cap.CopyQueueTimestampQueriesSupported) << "\n";
-    std::cout << "\t" << "CastingFullyTypedFormatSupported: " << ToString(cap.CastingFullyTypedFormatSupported) << "\n";
+    std::cout << "\t" << "CopyQueueTimestampQueriesSupported: " << ToStringBool(cap.CopyQueueTimestampQueriesSupported) << "\n";
+    std::cout << "\t" << "CastingFullyTypedFormatSupported: " << ToStringBool(cap.CastingFullyTypedFormatSupported) << "\n";
     std::cout << "\t" << "WriteBufferImmediateSupportFlags: " << ToString(cap.WriteBufferImmediateSupportFlags) << "\n";
     std::cout << "\t" << "ViewInstancingTier: " << ToString(cap.ViewInstancingTier) << "\n";
-    std::cout << "\t" << "BarycentricsSupported: " << ToString(cap.BarycentricsSupported) << "\n";
+    std::cout << "\t" << "BarycentricsSupported: " << ToStringBool(cap.BarycentricsSupported) << "\n";
     std::cout << "\n";
 }
 
@@ -81,9 +81,9 @@ void PrintPage_OPTIONS4(ID3D12Device* device)
         return;
 
     std::cout << "D3D12_OPTIONS4: \n";
-    std::cout << "\t" << "MSAA64KBAlignedTextureSupported: " << ToString(cap.MSAA64KBAlignedTextureSupported) << "\n";
+    std::cout << "\t" << "MSAA64KBAlignedTextureSupported: " << ToStringBool(cap.MSAA64KBAlignedTextureSupported) << "\n";
     std::cout << "\t" << "SharedResourceCompatibilityTier: " << ToString(cap.SharedResourceCompatibilityTier) << "\n";
-    std::cout << "\t" << "Native16BitShaderOpsSupported: " << ToString(cap.Native16BitShaderOpsSupported) << "\n";
+    std::cout << "\t" << "Native16BitShaderOpsSupported: " << ToStringBool(cap.Native16BitShaderOpsSupported) << "\n";
     std::cout << "\n";
 }
 
@@ -94,7 +94,7 @@ void PrintPage_OPTIONS5(ID3D12Device* device)
         return;
 
     std::cout << "D3D12_OPTIONS5: \n";
-    std::cout << "\t" << "SRVOnlyTiledResourceTier3: " << ToString(cap.SRVOnlyTiledResourceTier3) << "\n";
+    std::cout << "\t" << "SRVOnlyTiledResourceTier3: " << ToStringBool(cap.SRVOnlyTiledResourceTier3) << "\n";
     std::cout << "\t" << "RenderPassesTier: " << ToString(cap.RenderPassesTier) << "\n";
     std::cout << "\t" << "RaytracingTier: " << ToString(cap.RaytracingTier) << "\n";
     std::cout << "\n";
@@ -107,11 +107,11 @@ void PrintPage_OPTIONS6(ID3D12Device* device)
         return;
 
     std::cout << "D3D12_OPTIONS6: \n";
-    std::cout << "\t" << "AdditionalShadingRatesSupported: " << ToString(cap.AdditionalShadingRatesSupported) << "\n";
-    std::cout << "\t" << "PerPrimitiveShadingRateSupportedWithViewportIndexing: " << ToString(cap.PerPrimitiveShadingRateSupportedWithViewportIndexing) << "\n";
+    std::cout << "\t" << "AdditionalShadingRatesSupported: " << ToStringBool(cap.AdditionalShadingRatesSupported) << "\n";
+    std::cout << "\t" << "PerPrimitiveShadingRateSupportedWithViewportIndexing: " << ToStringBool(cap.PerPrimitiveShadingRateSupportedWithViewportIndexing) << "\n";
     std::cout << "\t" << "VariableShadingRateTier: " << ToString(cap.VariableShadingRateTier) << "\n";
-    std::cout << "\t" << "ShadingRateImageTileSize: " << ToString(cap.ShadingRateImageTileSize) << "\n";
-    std::cout << "\t" << "BackgroundProcessingSupported: " << ToString(cap.BackgroundProcessingSupported) << "\n";
+    std::cout << "\t" << "ShadingRateImageTileSize: " << ToStringUint(cap.ShadingRateImageTileSize) << "\n";
+    std::cout << "\t" << "BackgroundProcessingSupported: " << ToStringBool(cap.BackgroundProcessingSupported) << "\n";
     std::cout << "\n";
 }
 
@@ -143,9 +143,9 @@ void PrintPage_ARCHITECTURE(ID3D12Device* device)
                 outputHeader = false;
             }
             std::cout << "\t" << "Node " << cap.NodeIndex << ": \n";
-            std::cout << "\t\t" << "TileBasedRenderer: " << ToString(cap.TileBasedRenderer) << "\n";
-            std::cout << "\t\t" << "UMA: " << ToString(cap.UMA) << "\n";
-            std::cout << "\t\t" << "CacheCoherentUMA: " << ToString(cap.CacheCoherentUMA) << "\n";
+            std::cout << "\t\t" << "TileBasedRenderer: " << ToStringBool(cap.TileBasedRenderer) << "\n";
+            std::cout << "\t\t" << "UMA: " << ToStringBool(cap.UMA) << "\n";
+            std::cout << "\t\t" << "CacheCoherentUMA: " << ToStringBool(cap.CacheCoherentUMA) << "\n";
             std::cout << "\n";
         }
         else
