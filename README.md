@@ -20,6 +20,6 @@ DumpCaps [adapterIndex]
 where [adapterIndex] is a numerical value.
 
 ## Build
-The code is organized and built as a Visual Studio 2019 solution written in C++. 
+The code is organized and built as a Visual Studio 2019 solution written in C++. It uses Windows 10 SDK vrsion 10.0.19041.0. 
 
 It has been tested on an x86-64-compatible Windows 10 environment.
