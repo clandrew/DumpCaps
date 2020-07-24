@@ -191,6 +191,29 @@ void PrintPage_FEATURE_LEVELS(ID3D12Device* device)
     std::cout << "\n\n";
 }
 
+bool IsWARP(ID3D12Device* device)
+{
+    LUID currentAdapterLuid = device->GetAdapterLuid();
+
+    ComPtr<IDXGIFactory1> dxgiFactory;
+    CreateDXGIFactory1(IID_PPV_ARGS(&dxgiFactory));
+
+    ComPtr<IDXGIAdapter1> adapter;
+
+    for (UINT adapterIndex = 0; SUCCEEDED(dxgiFactory->EnumAdapters1(adapterIndex, &adapter)); ++adapterIndex)
+    {
+        DXGI_ADAPTER_DESC1 adapterDesc;
+        adapter->GetDesc1(&adapterDesc);
+
+        if (adapterDesc.AdapterLuid.LowPart == currentAdapterLuid.LowPart && adapterDesc.AdapterLuid.HighPart == currentAdapterLuid.HighPart)
+        {
+            return adapterDesc.Flags & DXGI_ADAPTER_FLAG_SOFTWARE;
+        }
+    }
+
+    return false;
+}
+
 int main(int argc, void** argv)
 {
     if (argc > 2)
@@ -252,6 +275,8 @@ int main(int argc, void** argv)
         std::cout << "Couldn't create a Direct3D 12 device; error code 0x" << std::hex << hr << ".\n";
         return -1;
     }
+
+    bool isWarp = IsWARP(device.Get());
 
     PrintPage_OPTIONS(device.Get());
 
