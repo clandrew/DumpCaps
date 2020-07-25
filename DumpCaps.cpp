@@ -191,12 +191,17 @@ void PrintPage_FEATURE_LEVELS(ID3D12Device* device)
     std::cout << "\n\n";
 }
 
+void PrintUsage()
+{
+    std::cout << "Usage: DumpCaps [adapterIndex]\n";
+    std::cout << "where adapterIndex is an optional number. If no adapter is specified, adapter 0 is used.\n";
+}
+
 int main(int argc, void** argv)
 {
     if (argc > 2)
     {
-        std::cout << "Usage: DumpCaps [adapterIndex]\n";
-        std::cout << "If no adapter is specified, adapter 0 is used.\n";
+        PrintUsage();
         return -1;
     }
 
@@ -204,8 +209,15 @@ int main(int argc, void** argv)
     if (argc == 2)
     {
         char* adapterIndexStorage = reinterpret_cast<char*>(argv[1]);
+
         std::istringstream strm(adapterIndexStorage);
-        strm >> adapterIndex;
+
+        if (!(strm >> adapterIndex))
+        {
+            std::cout << "An invalid adapterIndex was specified.\n";
+            PrintUsage();
+            return -1;
+        }
     }
 
     HRESULT hr;
